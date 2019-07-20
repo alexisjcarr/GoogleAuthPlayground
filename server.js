@@ -11,7 +11,7 @@ server.use(cors());
 
 server.get("/", (req, res) => {
   res.status(200).json({
-    kill: "yourself"
+    please: "work"
   });
 });
 
