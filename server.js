@@ -20,8 +20,10 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback"
     },
-    accessToken => {
-      console.log(accessToken);
+    (accessToken, refreshToken, profile, done) => {
+      console.log("access token: ", accessToken);
+      console.log("refresh token: ", refreshToken);
+      console.log("profile: ", profile);
     }
   )
 );
@@ -32,5 +34,7 @@ server.get(
     scope: ["profile", "email"]
   })
 );
+
+server.get("/auth/google/callback", passport.authenticate("google"));
 
 module.exports = server;
